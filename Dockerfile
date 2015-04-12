@@ -1,12 +1,15 @@
 ####
-# A docker image for running the Github-pages stuff `locally`.
+# A docker image for running the Github-pages stuff on a Raspberry Pi.
 #
-FROM ubuntu:14.04
-MAINTAINER Kingsquare <docker@kingsquare.nl>
+FROM ontouchstart/rpi-ruby:latest
+MAINTAINER Sean Payne <seantpayne@gmail.com>
 
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends ruby-dev python-pygments build-essential zlib1g-dev libssl-dev nodejs \
-	&& apt-get clean \
+# Separated runs into separate tasks to prevent overloading the Pi when building
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends libssl-dev
+RUN apt-get install -y --no-install-recommends nodejs
+RUN apt-get install -y --no-install-recommends python-pygments
+RUN apt-get clean \
 	&& rm -rf /var/lib/apt/lists/ \
 	&& gem install --no-ri --no-rdoc github-pages
 
