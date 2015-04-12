@@ -1,9 +1,10 @@
 ####
-# A docker image for running the Github-pages stuff `locally`.
+# A docker image for running the Github-pages stuff on a Raspberry Pi.
 #
 FROM ontouchstart/rpi-ruby:latest
 MAINTAINER Sean Payne <seantpayne@gmail.com>
 
+# Separated runs into separate tasks to prevent overloading the Pi when building
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends libssl-dev
 RUN apt-get install -y --no-install-recommends nodejs
